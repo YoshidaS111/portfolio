@@ -511,6 +511,10 @@ footer {
     .section { padding: 50px 10px; }
     .nav-container { padding: 0 15px; }
     .work-info { padding: 15px 10px; }
-    .work-desc { font-size: 2.8vw; letter-spacing: -0.05em; line-height: 1.6; }
+    .work-desc { font-size: 0.9rem; line-height: 1.6; }
+    
+    /* スマホの狭い画面でPC用の改行が暴発して形が崩れるのを防ぐため、スマホ表示時のみ改行を無効化 */
+    .work-desc br { display: none; }
+    
     #contact { padding: 50px 10px; }
 }
