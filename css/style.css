@@ -508,9 +508,9 @@ footer {
     .doc-action { margin-top: 15px; }
     
     /* スマホ用に余白を削り、PCと同じ文字の改行リズムを担保する調整 */
-    .section { padding: 60px 15px; }
+    .section { padding: 50px 10px; }
     .nav-container { padding: 0 15px; }
-    .work-info { padding: 20px 15px; }
-    .work-desc { font-size: 0.82rem; letter-spacing: -0.05em; }
-    #contact { padding: 60px 15px; }
+    .work-info { padding: 15px 10px; }
+    .work-desc { font-size: 2.8vw; letter-spacing: -0.05em; line-height: 1.6; }
+    #contact { padding: 50px 10px; }
 }
