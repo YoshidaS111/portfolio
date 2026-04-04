@@ -10,6 +10,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── Language Toggle Button ── */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .lang-toggle button {
+            padding: 5px 13px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            font-family: inherit;
+            background: transparent;
+            border: none;
+            color: var(--text-muted, #aaa);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            letter-spacing: 0.05em;
+        }
+        .lang-toggle button.active {
+            background: var(--accent, #f5c518);
+            color: #000;
+            border-radius: 20px;
+        }
+        .lang-toggle button:hover:not(.active) {
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -17,11 +50,15 @@
         <div class="nav-container">
             <div class="logo">Shoma <span>Yoshida</span></div>
             <ul class="nav-links">
-                <li><a href="#hero">ホーム</a></li>
-                <li><a href="#about">プロフィール</a></li>
-                <li><a href="#works">作品一覧</a></li>
-                <li><a href="#documents">その他資料</a></li>
+                <li><a href="#hero"     data-ja="ホーム"     data-en="Home">ホーム</a></li>
+                <li><a href="#about"    data-ja="プロフィール" data-en="About">プロフィール</a></li>
+                <li><a href="#works"    data-ja="作品一覧"   data-en="Works">作品一覧</a></li>
+                <li><a href="#documents" data-ja="その他資料" data-en="Docs">その他資料</a></li>
             </ul>
+            <div class="lang-toggle">
+                <button id="btn-ja" class="active" onclick="setLang('ja')">JA</button>
+                <button id="btn-en"                onclick="setLang('en')">EN</button>
+            </div>
         </div>
     </nav>
 
@@ -29,23 +66,30 @@
         <!-- Hero Section -->
         <section id="hero" class="section">
             <div class="hero-content">
-                <span class="badge-outline">ゲームプランナー / 学生</span>
-                <h2 class="title" style="letter-spacing: 0;">発想は非年功序列。</h2>
-                <p>良いアイデアに学年や立場は関係無い。<br>必要なのは、突き抜けた発想とそれを実現し切る行動力だと考えています。</p>
+                <span class="badge-outline"
+                    data-ja="ゲームプランナー / 学生"
+                    data-en="Game Planner / Student">ゲームプランナー / 学生</span>
+                <h2 class="title" style="letter-spacing: 0;"
+                    data-ja="発想は非年功序列。"
+                    data-en="Ideas know no seniority.">発想は非年功序列。</h2>
+                <p data-ja="良いアイデアに学年や立場は関係無い。<br>必要なのは、突き抜けた発想とそれを実現し切る行動力だと考えています。"
+                   data-en="Great ideas don't care about your grade or title.<br>What matters is daring creativity and the drive to make it real.">良いアイデアに学年や立場は関係無い。<br>必要なのは、突き抜けた発想とそれを実現し切る行動力だと考えています。</p>
                 <div class="hero-buttons">
-                    <a href="#works" class="btn btn-primary">
-                        作品を見る
-                    </a>
-                    <a href="#documents" class="btn btn-secondary">
-                        資料を見る
-                    </a>
+                    <a href="#works" class="btn btn-primary"
+                        data-ja="作品を見る"
+                        data-en="View Works">作品を見る</a>
+                    <a href="#documents" class="btn btn-secondary"
+                        data-ja="資料を見る"
+                        data-en="View Docs">資料を見る</a>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
         <section id="about" class="section">
-            <h2 class="section-title">プロフィール</h2>
+            <h2 class="section-title"
+                data-ja="プロフィール"
+                data-en="About Me">プロフィール</h2>
             <div class="about-grid grid-2">
                 <div class="console-card">
                     <div style="display: flex; gap: 25px; align-items: center; margin-bottom: 20px;">
@@ -56,7 +100,7 @@
                             <h3 style="font-size: 1.8rem; margin-bottom: 6px;">吉田 匠馬</h3>
                             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                                 <a href="https://x.com/seisyunnostrike" target="_blank" style="color: var(--accent-hover); font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
-                                    X(旧Twitter)
+                                    X (Twitter)
                                 </a>
                                 <a href="https://unityroom.com/users/jdw4k8mzuyha3q0io2r7" target="_blank" style="color: var(--accent-hover); font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
                                     unityroom
@@ -64,33 +108,43 @@
                             </div>
                         </div>
                     </div>
-                    <p style="color: var(--text-muted); margin-bottom: 15px;">京都コンピューター学院 ゲーム科2回生 プランナー志望</p>
+                    <p style="color: var(--text-muted); margin-bottom: 15px;"
+                        data-ja="京都コンピューター学院 ゲーム科2回生 プランナー志望"
+                        data-en="Kyoto Computer Gakuin — 2nd Year Game Dept. · Aspiring Planner">京都コンピューター学院 ゲーム科2回生 プランナー志望</p>
                     <div style="font-size: 0.95rem; line-height: 1.5;">
-                        <p style="margin-bottom: 12px;">2006/11/01生まれ。</p>
-                        <p style="margin-bottom: 12px;">ゲーム制作サークル「ハイミント」部長<br>ゲーム制作グループ「ラウググ」リーダー</p>
-                        <p style="margin-bottom: 0;">GGX2026優秀賞「セーチング！」<br>メインプランナー、UI、キャラクターデザイナー担当。</p>
+                        <p style="margin-bottom: 12px;"
+                            data-ja="2006/11/01生まれ。"
+                            data-en="Born November 1, 2006.">2006/11/01生まれ。</p>
+                        <p style="margin-bottom: 12px;"
+                            data-ja="ゲーム制作サークル「ハイミント」部長<br>ゲーム制作グループ「ラウググ」リーダー"
+                            data-en="Game-dev club 「ハイミント」 — President<br>Game-dev group 「ラウググ」 — Leader">ゲーム制作サークル「ハイミント」部長<br>ゲーム制作グループ「ラウググ」リーダー</p>
+                        <p style="margin-bottom: 0;"
+                            data-ja="GGX2026優秀賞「セーチング！」<br>メインプランナー、UI、キャラクターデザイナー担当。"
+                            data-en="GGX2026 Excellence Award — 「セーチング！」<br>Main Planner, UI Designer &amp; Character Designer.">GGX2026優秀賞「セーチング！」<br>メインプランナー、UI、キャラクターデザイナー担当。</p>
                     </div>
                 </div>
                 <div class="console-card">
-                    <h3 style="margin-bottom: 20px;">技術</h3>
+                    <h3 style="margin-bottom: 20px;"
+                        data-ja="技術"
+                        data-en="Skills">技術</h3>
                     <div class="skill-group">
-                        <label>企画立案</label>
+                        <label data-ja="企画立案" data-en="Game Planning">企画立案</label>
                         <div class="progress-bar"><div class="progress" style="width: 100%; background: linear-gradient(90deg, #f5c518, #ffdd57, #f0a500); box-shadow: 0 0 10px rgba(245,197,24,0.6);"></div></div>
                     </div>
                     <div class="skill-group">
-                        <label>レベルデザイン</label>
+                        <label data-ja="レベルデザイン" data-en="Level Design">レベルデザイン</label>
                         <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
                     </div>
                     <div class="skill-group">
-                        <label>Excel（仕様書）</label>
+                        <label data-ja="Excel（仕様書）" data-en="Excel (Spec Docs)">Excel（仕様書）</label>
                         <div class="progress-bar"><div class="progress" style="width: 55%;"></div></div>
                     </div>
                     <div class="skill-group">
-                        <label>PowerPoint（企画書）</label>
+                        <label data-ja="PowerPoint（企画書）" data-en="PowerPoint (Proposals)">PowerPoint（企画書）</label>
                         <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
                     </div>
                     <div class="skill-group">
-                        <label>Unity / C#</label>
+                        <label data-ja="Unity / C#" data-en="Unity / C#">Unity / C#</label>
                         <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
                     </div>
                 </div>
@@ -99,19 +153,29 @@
 
         <!-- Works Section ("Library") -->
         <section id="works" class="section">
-            <h2 class="section-title">作品一覧</h2>
+            <h2 class="section-title"
+                data-ja="作品一覧"
+                data-en="Works">作品一覧</h2>
             
             <div class="works-grid">
                 <!-- Slot 1: Secret Project 1 (Top Left) -->
                 <div class="work-card">
                     <div class="work-img-container" style="background-color: rgba(255, 255, 255, 0.04); display: flex; align-items: center; justify-content: center;">
-                        <span style="color: var(--text-muted); font-size: 1.5rem; font-weight: 600; letter-spacing: 2px;">制作中...</span>
-                        <div class="work-badge" style="background: rgba(255,255,255,0.1); color: #888;">制作中</div>
+                        <span style="color: var(--text-muted); font-size: 1.5rem; font-weight: 600; letter-spacing: 2px;"
+                            data-ja="制作中..."
+                            data-en="In Dev...">制作中...</span>
+                        <div class="work-badge" style="background: rgba(255,255,255,0.1); color: #888;"
+                            data-ja="制作中"
+                            data-en="In Dev">制作中</div>
                     </div>
                     <div class="work-info">
                         <h3 style="font-size: 1.35rem; letter-spacing: -0.03em; white-space: nowrap;">ぐっばいコンビニエンスター</h3>
-                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;">プロジェクトリーダー・企画原案<br>メインプランナー・シナリオライター</p>
-                        <p class="work-desc">ひょんなことから迷いこんだ<br>コンビニ一棟だけの小さな惑星から<br>「超」不思議な漂流者達と帰還を目指す。<br>思わず肩の力が抜けていく、<br>だけどなんだか前向きになれる気がする。<br>未来の名前も見知らぬ銀河から送る<br>個性派脱出ADVゲーム。</p>
+                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;"
+                            data-ja="プロジェクトリーダー・企画原案<br>メインプランナー・シナリオライター"
+                            data-en="Project Leader · Original Concept<br>Main Planner · Scenario Writer">プロジェクトリーダー・企画原案<br>メインプランナー・シナリオライター</p>
+                        <p class="work-desc"
+                            data-ja="ひょんなことから迷いこんだ<br>コンビニ一棟だけの小さな惑星から<br>「超」不思議な漂流者達と帰還を目指す。<br>思わず肩の力が抜けていく、<br>だけどなんだか前向きになれる気がする。<br>未来の名前も見知らぬ銀河から送る<br>個性派脱出ADVゲーム。"
+                            data-en="Somehow you've wandered into a tiny planet<br>made up of just one convenience store.<br>Team up with the most peculiar drifters<br>and find your way home.<br>A quirky escape-ADV that'll lift your spirits<br>— sent from a galaxy with no name.">ひょんなことから迷いこんだ<br>コンビニ一棟だけの小さな惑星から<br>「超」不思議な漂流者達と帰還を目指す。<br>思わず肩の力が抜けていく、<br>だけどなんだか前向きになれる気がする。<br>未来の名前も見知らぬ銀河から送る<br>個性派脱出ADVゲーム。</p>
                         <div style="display: flex; gap: 10px; margin-top: auto;">
                             <span class="btn btn-sm btn-secondary" style="opacity: 0.3; cursor: default;">・・・</span>
                         </div>
@@ -121,17 +185,27 @@
                 <!-- Slot 2: セーチング！ (Top Middle) -->
                 <div class="work-card">
                     <div class="work-img-container">
-                        <div class="award-badge">🏆 優秀賞受賞</div>
+                        <div class="award-badge"
+                            data-ja="🏆 優秀賞受賞"
+                            data-en="🏆 Excellence Award">🏆 優秀賞受賞</div>
                         <img src="https://img.youtube.com/vi/ieA_p4kP0Xk/hqdefault.jpg" alt="セーチング！" class="work-img" style="object-fit: cover; object-position: center;">
                         <div class="work-badge">GGX Game Jam</div>
                     </div>
                     <div class="work-info">
                         <h3>セーチング！</h3>
-                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;">企画原案・メインプランナー<br>UI、キャラクターデザイナー</p>
-                        <p class="work-desc">聖地を破壊し尽くし、魔王となれ！<br>「聖地を壊す。」<br>逆転の発想から生まれた<br>爽快破壊3Dアクションゲーム。<br>和歌山発のプロジェクト「Game Grove X (GGX)」にてチーム制作。2026年「GGX Games Showcase」にて優秀賞を受賞。</p>
+                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;"
+                            data-ja="企画原案・メインプランナー<br>UI、キャラクターデザイナー"
+                            data-en="Original Concept · Main Planner<br>UI Designer · Character Designer">企画原案・メインプランナー<br>UI、キャラクターデザイナー</p>
+                        <p class="work-desc"
+                            data-ja="聖地を破壊し尽くし、魔王となれ！<br>「聖地を壊す。」<br>逆転の発想から生まれた<br>爽快破壊3Dアクションゲーム。<br>和歌山発のプロジェクト「Game Grove X (GGX)」にてチーム制作。2026年「GGX Games Showcase」にて優秀賞を受賞。"
+                            data-en="Destroy every sacred site and become the Demon King!<br>「聖地を壊す。」<br>A high-energy 3D destruction action game<br>born from a reverse-thinking concept.<br>Team project under Wakayama's 「Game Grove X (GGX)」.<br>Excellence Award at the 2026 「GGX Games Showcase」.">聖地を破壊し尽くし、魔王となれ！<br>「聖地を壊す。」<br>逆転の発想から生まれた<br>爽快破壊3Dアクションゲーム。<br>和歌山発のプロジェクト「Game Grove X (GGX)」にてチーム制作。2026年「GGX Games Showcase」にて優秀賞を受賞。</p>
                         <div style="display: flex; gap: 10px; margin-top: auto;">
-                            <a href="https://yoshioka-h.itch.io/searching" target="_blank" class="btn btn-sm btn-primary">🎮 プレイ</a>
-                            <a href="https://youtu.be/ieA_p4kP0Xk?si=V_oQHUIr3wE3G6w5" target="_blank" class="btn btn-sm btn-secondary">🎥 動画</a>
+                            <a href="https://yoshioka-h.itch.io/searching" target="_blank" class="btn btn-sm btn-primary"
+                                data-ja="🎮 プレイ"
+                                data-en="🎮 Play">🎮 プレイ</a>
+                            <a href="https://youtu.be/ieA_p4kP0Xk?si=V_oQHUIr3wE3G6w5" target="_blank" class="btn btn-sm btn-secondary"
+                                data-ja="🎥 動画"
+                                data-en="🎥 Video">🎥 動画</a>
                         </div>
                     </div>
                 </div>
@@ -144,10 +218,16 @@
                     </div>
                     <div class="work-info">
                         <h3>らーめん裏飯家</h3>
-                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;">メインプランナー<br>テキスト設計・サブプログラマー</p>
-                        <p class="work-desc">お昼どき、ラーメン店に入店した貴方。<br>裏メニューを間違えて頼まないように、<br>注文を“正しく”、“速く”組み立てろ！！<br>正しい料理名をすばやく判別して注文する<br>ハイスピードスコアアタックゲーム。<br>Unity1week「うら」参加作品。</p>
+                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;"
+                            data-ja="メインプランナー<br>テキスト設計・サブプログラマー"
+                            data-en="Main Planner<br>Text Design · Sub Programmer">メインプランナー<br>テキスト設計・サブプログラマー</p>
+                        <p class="work-desc"
+                            data-ja="お昼どき、ラーメン店に入店した貴方。<br>裏メニューを間違えて頼まないように、<br>注文を&quot;正しく&quot;、&quot;速く&quot;組み立てろ！！<br>正しい料理名をすばやく判別して注文する<br>ハイスピードスコアアタックゲーム。<br>Unity1week「うら」参加作品。"
+                            data-en="Lunchtime — you step into a ramen joint.<br>Don't accidentally order off the secret menu!<br>Build your order &quot;correctly&quot; and &quot;fast&quot;!<br>A high-speed score-attack game where you<br>identify the right dish name on the fly.<br>Entry for Unity1week 「うら」.">お昼どき、ラーメン店に入店した貴方。<br>裏メニューを間違えて頼まないように、<br>注文を"正しく"、"速く"組み立てろ！！<br>正しい料理名をすばやく判別して注文する<br>ハイスピードスコアアタックゲーム。<br>Unity1week「うら」参加作品。</p>
                         <div style="display: flex; gap: 10px; margin-top: auto;">
-                            <a href="https://unityroom.com/games/urameshiya" target="_blank" class="btn btn-sm btn-primary">🎮 プレイ</a>
+                            <a href="https://unityroom.com/games/urameshiya" target="_blank" class="btn btn-sm btn-primary"
+                                data-ja="🎮 プレイ"
+                                data-en="🎮 Play">🎮 プレイ</a>
                         </div>
                     </div>
                 </div>
@@ -155,15 +235,21 @@
                 <!-- Slot 4: MOWひとつ (Bottom Left) -->
                 <div class="work-card extra-work">
                     <div class="work-img-container">
-                        <img src="assets/mow_thumbnail.png" alt="MOWひとつ" class="work-img" style="object-position: top;">
+                        <img src="assets/mow_thumbnail.png" alt="MOWひとつ" class="work-img" style="object-position: top; transform: scale(1.1) translateX(5%);">
                         <div class="work-badge">unity1week</div>
                     </div>
                     <div class="work-info">
                         <h3>MOWひとつ</h3>
-                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;">プロジェクトリーダー・メインプランナー<br>サブプログラマー・デバッガー</p>
-                        <p class="work-desc">さあ、モースピードで突き進め！！<br>牛力発電の実験体にされた牛が<br>自らの回転エネルギーで<br>研究所を飛び出し、町を破壊する<br>破天荒タイムアタック3Dアクション！<br>Unity1week「もうひとつ」参加作品。</p>
+                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;"
+                            data-ja="プロジェクトリーダー・メインプランナー<br>サブプログラマー・デバッガー"
+                            data-en="Project Leader · Main Planner<br>Sub Programmer · Debugger">プロジェクトリーダー・メインプランナー<br>サブプログラマー・デバッガー</p>
+                        <p class="work-desc"
+                            data-ja="さあ、モースピードで突き進め！！<br>牛力発電の実験体にされた牛が<br>自らの回転エネルギーで<br>研究所を飛び出し、町を破壊する<br>破天荒タイムアタック3Dアクション！<br>Unity1week「もうひとつ」参加作品。"
+                            data-en="Charge ahead at moo speed!<br>A cow turned into a spinning power-gen experiment<br>breaks out of the lab and tears through the city<br>with its own rotational energy.<br>A wild time-attack 3D action game!<br>Entry for Unity1week 「もうひとつ」.">さあ、モースピードで突き進め！！<br>牛力発電の実験体にされた牛が<br>自らの回転エネルギーで<br>研究所を飛び出し、町を破壊する<br>破天荒タイムアタック3Dアクション！<br>Unity1week「もうひとつ」参加作品。</p>
                         <div style="display: flex; gap: 10px; margin-top: auto;">
-                            <a href="https://unityroom.com/games/raugugu_mou" target="_blank" class="btn btn-sm btn-primary">🎮 プレイ</a>
+                            <a href="https://unityroom.com/games/raugugu_mou" target="_blank" class="btn btn-sm btn-primary"
+                                data-ja="🎮 プレイ"
+                                data-en="🎮 Play">🎮 プレイ</a>
                         </div>
                     </div>
                 </div>
@@ -171,13 +257,21 @@
                 <!-- Slot 5: Secret Project 2 (Bottom Middle) -->
                 <div class="work-card extra-work">
                     <div class="work-img-container" style="background-color: rgba(255, 255, 255, 0.04); display: flex; align-items: center; justify-content: center;">
-                        <span style="color: var(--text-muted); font-size: 1.5rem; font-weight: 600; letter-spacing: 2px;">準備中...</span>
-                        <div class="work-badge" style="background: rgba(255,255,255,0.1); color: #888;">準備中</div>
+                        <span style="color: var(--text-muted); font-size: 1.5rem; font-weight: 600; letter-spacing: 2px;"
+                            data-ja="準備中..."
+                            data-en="Coming Soon...">準備中...</span>
+                        <div class="work-badge" style="background: rgba(255,255,255,0.1); color: #888;"
+                            data-ja="準備中"
+                            data-en="Soon">準備中</div>
                     </div>
                     <div class="work-info">
                         <h3 style="color: var(--text-muted);">No Project</h3>
-                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px; color: #666;">なにもないよ<br>&nbsp;</p>
-                        <p class="work-desc" style="color: var(--text-muted);">こちらの枠は現在準備中です。新作ゲームや追加の実績ができ次第、随時公開予定です。</p>
+                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px; color: #666;"
+                            data-ja="なにもないよ<br>&nbsp;"
+                            data-en="Nothing here yet<br>&nbsp;">なにもないよ<br>&nbsp;</p>
+                        <p class="work-desc" style="color: var(--text-muted);"
+                            data-ja="こちらの枠は現在準備中です。新作ゲームや追加の実績ができ次第、随時公開予定です。"
+                            data-en="This slot is under preparation. New games and achievements will be posted as they become available.">こちらの枠は現在準備中です。新作ゲームや追加の実績ができ次第、随時公開予定です。</p>
                         <div style="display: flex; gap: 10px; margin-top: auto;">
                             <span class="btn btn-sm btn-secondary" style="opacity: 0.3; cursor: default;">・・・</span>
                         </div>
@@ -187,13 +281,21 @@
                 <!-- Slot 6: Secret Project 3 (Bottom Right) -->
                 <div class="work-card extra-work">
                     <div class="work-img-container" style="background-color: rgba(255, 255, 255, 0.04); display: flex; align-items: center; justify-content: center;">
-                        <span style="color: var(--text-muted); font-size: 1.5rem; font-weight: 600; letter-spacing: 2px;">準備中...</span>
-                        <div class="work-badge" style="background: rgba(255,255,255,0.1); color: #888;">準備中</div>
+                        <span style="color: var(--text-muted); font-size: 1.5rem; font-weight: 600; letter-spacing: 2px;"
+                            data-ja="準備中..."
+                            data-en="Coming Soon...">準備中...</span>
+                        <div class="work-badge" style="background: rgba(255,255,255,0.1); color: #888;"
+                            data-ja="準備中"
+                            data-en="Soon">準備中</div>
                     </div>
                     <div class="work-info">
                         <h3 style="color: var(--text-muted);">No Project</h3>
-                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px; color: #666;">なにもないよ<br>&nbsp;</p>
-                        <p class="work-desc" style="color: var(--text-muted);">こちらの枠は現在準備中です。新作ゲームや追加の実績ができ次第、随時公開予定です。</p>
+                        <p class="work-role" style="font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px; color: #666;"
+                            data-ja="なにもないよ<br>&nbsp;"
+                            data-en="Nothing here yet<br>&nbsp;">なにもないよ<br>&nbsp;</p>
+                        <p class="work-desc" style="color: var(--text-muted);"
+                            data-ja="こちらの枠は現在準備中です。新作ゲームや追加の実績ができ次第、随時公開予定です。"
+                            data-en="This slot is under preparation. New games and achievements will be posted as they become available.">こちらの枠は現在準備中です。新作ゲームや追加の実績ができ次第、随時公開予定です。</p>
                         <div style="display: flex; gap: 10px; margin-top: auto;">
                             <span class="btn btn-sm btn-secondary" style="opacity: 0.3; cursor: default;">・・・</span>
                         </div>
@@ -202,25 +304,35 @@
             </div>
 
             <div id="load-more-container" style="text-align: center; margin-top: 45px;">
-                <button id="load-more-btn" class="btn btn-secondary" style="font-weight: 600; padding: 14px 45px; cursor: pointer;">もっと見る ▼</button>
+                <button id="load-more-btn" class="btn btn-secondary"
+                    style="font-weight: 600; padding: 14px 45px; cursor: pointer;"
+                    data-ja-expand="もっと見る ▼"
+                    data-en-expand="Show More ▼"
+                    data-ja-collapse="しまう ▲"
+                    data-en-collapse="Show Less ▲">もっと見る ▼</button>
             </div>
         </section>
 
         <!-- Documents Section -->
         <section id="documents" class="section">
-            <h2 class="section-title">その他資料</h2>
-            <p class="docs-intro">その他なにかしらの資料が出来ればここに掲載します。</p>
+            <h2 class="section-title"
+                data-ja="その他資料"
+                data-en="Documents">その他資料</h2>
+            <p class="docs-intro"
+                data-ja="その他なにかしらの資料が出来ればここに掲載します。"
+                data-en="Any additional documents or materials will be posted here as they become available.">その他なにかしらの資料が出来ればここに掲載します。</p>
         </section>
 
         <!-- Contact Section -->
         <section id="contact">
-            <h2>お問い合わせ</h2>
-            <p>企画、制作に関するご連絡や、作品へのご意見などはメールやXのダイレクトメッセージ等でお気軽にご連絡ください。</p>
+            <h2 data-ja="お問い合わせ" data-en="Contact">お問い合わせ</h2>
+            <p data-ja="企画、制作に関するご連絡や、作品へのご意見などはメールやXのダイレクトメッセージ等でお気軽にご連絡ください。"
+               data-en="Feel free to reach out via email or X DM for inquiries about planning, development, or any feedback on my works.">企画、制作に関するご連絡や、作品へのご意見などはメールやXのダイレクトメッセージ等でお気軽にご連絡ください。</p>
             <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 30px;">
                 <p style="font-size: 1.2rem; font-weight: 600; letter-spacing: 1px; color: #fff; margin: 0;">
                     dai05sho01ma25@gmail.com
                 </p>
-                <a href="https://x.com/seisyunnostrike" target="_blank" class="social-icon" title="X (Twitter)でフォロー" style="margin-top: 0; width: 46px; height: 46px;">
+                <a href="https://x.com/seisyunnostrike" target="_blank" class="social-icon" title="X (Twitter)" style="margin-top: 0; width: 46px; height: 46px;">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                     </svg>
@@ -230,9 +342,44 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Shoma Yoshida. All Rights Reserved.</p>
+        <p>© 2026 Shoma Yoshida. All Rights Reserved.</p>
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        // ── Language Switch ──────────────────────────────────────────
+        function setLang(lang) {
+            localStorage.setItem('lang', lang);
+            applyLang(lang);
+        }
+
+        function applyLang(lang) {
+            document.documentElement.lang = lang;
+
+            // Toggle button states
+            document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+            // Replace innerHTML of every element that has data-ja / data-en
+            document.querySelectorAll('[data-ja][data-en]').forEach(el => {
+                el.innerHTML = el.dataset[lang];
+            });
+
+            // Special handling for "load-more" button (expand/collapse states)
+            const btn = document.getElementById('load-more-btn');
+            if (btn) {
+                const expanded = btn.dataset.expanded === 'true';
+                btn.innerHTML = expanded
+                    ? btn.dataset[lang + 'Collapse']
+                    : btn.dataset[lang + 'Expand'];
+            }
+        }
+
+        // Init on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('lang') || 'ja';
+            applyLang(saved);
+        });
+    </script>
 </body>
 </html>

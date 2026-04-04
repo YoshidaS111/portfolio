@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (loadMoreBtn && extraWorks.length > 0) {
         loadMoreBtn.addEventListener('click', () => {
+            const lang = localStorage.getItem('lang') || 'ja';
             if (!isExpanded) {
                 // 展開する
                 extraWorks.forEach((work, index) => {
@@ -53,16 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         work.classList.add('show-work');
                     }, index * 100);
                 });
-                loadMoreBtn.textContent = 'しまう ▲';
+                loadMoreBtn.innerHTML = loadMoreBtn.dataset[lang + 'Collapse'];
+                loadMoreBtn.dataset.expanded = 'true';
                 isExpanded = true;
             } else {
                 // 折りたたむ
                 extraWorks.forEach(work => {
                     work.classList.remove('show-work');
                 });
-                loadMoreBtn.textContent = 'もっと見る ▼';
+                loadMoreBtn.innerHTML = loadMoreBtn.dataset[lang + 'Expand'];
+                loadMoreBtn.dataset.expanded = 'false';
                 isExpanded = false;
-                
+
                 // 画面を作品一覧のトップへスムーズにスクロールして戻す
                 const worksSection = document.getElementById('works');
                 if (worksSection) {
