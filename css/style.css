@@ -166,22 +166,54 @@ h1, h2, h3, h4 {
 }
 
 .btn-primary {
-    background: var(--text-main);
-    color: var(--bg-main);
+    background: linear-gradient(135deg, #10b981, #047857);
+    color: #ffffff !important;
+    border: 1px solid #34d399;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    font-weight: 700;
 }
 
 .btn-primary:hover {
-    background: var(--text-muted);
+    background: linear-gradient(135deg, #34d399, #10b981);
+    border-color: #6ee7b7;
+    box-shadow: 0 6px 20px rgba(52, 211, 153, 0.5);
+    transform: translateY(-2px);
+    color: #ffffff !important;
 }
 
 .btn-secondary {
-    background: transparent;
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, #cc181e, #990f14);
+    color: #ffffff !important;
+    border: 1px solid #ff333a;
+    box-shadow: 0 4px 15px rgba(204, 24, 30, 0.35);
+    font-weight: 700;
 }
 
 .btn-secondary:hover {
-    border-color: var(--text-main);
+    background: linear-gradient(135deg, #ff1f25, #cc181e);
+    border-color: #ff666b;
+    box-shadow: 0 6px 20px rgba(255, 31, 37, 0.5);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+}
+
+/* 詳細ボタン (ブルーカラー) */
+.btn-primary[data-ja*="詳細"],
+.btn-info-detail {
+    background: linear-gradient(135deg, #0070f3, #0051ba);
+    color: #ffffff !important;
+    border: 1px solid #38bdf8;
+    box-shadow: 0 4px 15px rgba(0, 112, 243, 0.4);
+    font-weight: 700;
+}
+
+.btn-primary[data-ja*="詳細"]:hover,
+.btn-info-detail:hover {
+    background: linear-gradient(135deg, #38bdf8, #0070f3);
+    border-color: #7dd3fc;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+    transform: translateY(-2px);
+    color: #ffffff !important;
 }
 
 .btn-sm {
@@ -192,6 +224,35 @@ h1, h2, h3, h4 {
 .hero-buttons {
     display: flex;
     gap: 15px;
+}
+
+/* ナビゲーション用ボタン (作品を見る / 資料を見る の色復元) */
+.hero-buttons .btn-primary {
+    background: var(--text-main) !important;
+    color: var(--bg-main) !important;
+    border: 1px solid var(--text-main) !important;
+    box-shadow: none !important;
+    font-weight: 600;
+}
+
+.hero-buttons .btn-primary:hover {
+    background: var(--text-muted) !important;
+    border-color: var(--text-muted) !important;
+    transform: translateY(-2px);
+}
+
+.hero-buttons .btn-secondary {
+    background: transparent !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: none !important;
+    font-weight: 600;
+}
+
+.hero-buttons .btn-secondary:hover {
+    border-color: var(--text-main) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    transform: translateY(-2px);
 }
 
 /* Cards (Works, About) */
@@ -261,125 +322,329 @@ h1, h2, h3, h4 {
 /* Works Section */
 .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
+@media (max-width: 1024px) {
+    .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .works-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Steam Store Style Modal */
+.steam-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 14, 22, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.steam-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.steam-modal-window {
+    background: linear-gradient(135deg, #1b2838 0%, #171a21 100%);
+    border: 1px solid rgba(103, 193, 245, 0.3);
+    border-radius: 12px;
+    max-width: 820px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), 0 0 50px rgba(103, 193, 245, 0.2);
+    color: #c6d4df;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.steam-modal-overlay.active .steam-modal-window {
+    transform: scale(1) translateY(0);
+}
+
+.steam-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.steam-close-btn:hover {
+    background: #67c1f5;
+    color: #171a21;
+    transform: scale(1.1);
+}
+
+/* Steam Header Banner */
+.steam-header {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: #0b0b0e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steam-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #0b0b0e;
+}
+
+.steam-header-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 30px 15px;
+    background: linear-gradient(to top, rgba(23, 26, 33, 1) 0%, rgba(23, 26, 33, 0.7) 60%, transparent 100%);
+}
+
+.steam-header-title h2 {
+    font-size: 1.9rem;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+}
+
+/* Steam Body Layout */
+.steam-body {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 25px;
+    padding: 25px 30px 35px;
+}
+
+@media (max-width: 768px) {
+    .steam-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+.steam-actions {
+    background: rgba(0, 0, 0, 0.35);
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Steam Sidebar Meta */
+.steam-side-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.steam-award-box {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.steam-award-badge-ui {
+    background: rgba(255, 215, 0, 0.12);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: #ffd700;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+    margin-top: 4px;
+}
+
+.steam-meta-item {
+    font-size: 0.85rem;
+}
+
+.steam-meta-label {
+    color: #56707f;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.steam-meta-val {
+    color: #67c1f5;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.steam-section-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #67c1f5;
+    border-bottom: 1px solid rgba(103, 193, 245, 0.25);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.steam-desc-content {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #acb2b8;
+}
+
+/* Work Card Grid Style */
 .work-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 14px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    transition: var(--transition-fast);
-    display: flex;
-    flex-direction: column;
+}
+
+.work-card:hover {
+    border-color: #67c1f5;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(103, 193, 245, 0.2);
 }
 
 .work-card:hover {
     border-color: var(--accent-blue);
     transform: translateY(-4px);
-    box-shadow: 0 10px 40px rgba(0, 112, 243, 0.1);
+    box-shadow: 0 12px 35px rgba(0, 112, 243, 0.18);
 }
 
-.extra-work {
-    display: none;
-}
-
-.extra-work.show-work {
-    display: flex;
-    animation: fadeInUp 0.5s ease forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* 浮遊展開（クリックしたカードが手前に浮かび上がり、下へ"にゅんっ"と伸びる） */
+.work-card.expanded {
+    z-index: 100;
+    border-color: var(--accent-blue);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 112, 243, 0.3);
+    transform: translateY(-6px) scale(1.02);
 }
 
 .work-img-container {
     width: 100%;
-    height: 200px;
+    height: 170px;
     background: var(--bg-main);
     position: relative;
     overflow: hidden;
+    border-radius: 13px;
+}
+
+.work-img-container::after {
+    content: "▼";
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: rgba(11, 11, 14, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-main);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 700;
+    border: 1px solid var(--border-color);
+    z-index: 3;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.work-card:hover .work-img-container::after {
+    background: var(--accent-blue);
+    border-color: var(--accent-hover);
+    transform: scale(1.1);
+}
+
+.work-card.expanded .work-img-container::after {
+    content: "▲";
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .work-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition-smooth);
+    transition: transform 0.4s ease;
 }
 
 .work-card:hover .work-img {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
+/* 右上のJamバッジを非表示 */
 .work-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(11, 11, 14, 0.8);
-    backdrop-filter: blur(4px);
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    z-index: 2;
+    display: none !important;
 }
 
 .award-badge {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
+    bottom: 6px;
+    left: 6px;
     background: rgba(11, 11, 14, 0.9);
     backdrop-filter: blur(4px);
     color: var(--award-gold);
-    padding: 6px 14px;
+    padding: 4px 10px;
     border-radius: 4px;
     font-weight: 800;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     z-index: 2;
     border: 1px solid rgba(255, 215, 0, 0.5);
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15), inset 0 0 10px rgba(255, 215, 0, 0.1);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
 }
 
+/* 作品カード内は一覧時はアイコンのみを表示 */
 .work-info {
-    padding: 25px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.work-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-}
-
-.work-role {
-    font-size: 0.85rem;
-    color: var(--accent-blue);
-    font-weight: 600;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.work-desc {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin-bottom: 25px;
-    flex-grow: 1;
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Documents */
@@ -473,6 +738,67 @@ h1, h2, h3, h4 {
     color: var(--text-main);
     transition: var(--transition-bounce);
     margin-top: 20px;
+}
+
+/* Mobile Responsive Optimizations */
+@media (max-width: 768px) {
+    .steam-modal-overlay {
+        padding: 12px;
+    }
+    
+    .steam-modal-window {
+        max-height: 94vh;
+        border-radius: 10px;
+    }
+    
+    .steam-header {
+        height: 180px;
+    }
+    
+    .steam-header-title {
+        padding: 15px 20px 10px;
+    }
+    
+    .steam-header-title h2 {
+        font-size: 1.35rem;
+    }
+    
+    .steam-body {
+        padding: 18px 20px 25px;
+        gap: 20px;
+    }
+    
+    .steam-actions {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    .steam-actions .btn {
+        flex: 1 1 calc(50% - 10px);
+        text-align: center;
+        padding: 10px 14px;
+        font-size: 0.88rem;
+    }
+    
+    .steam-side-box {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .work-img-container {
+        height: 140px;
+    }
+
+    .steam-actions .btn {
+        flex: 1 1 100%;
+    }
 }
 
 .social-icon:hover {
