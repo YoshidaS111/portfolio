@@ -166,53 +166,50 @@ h1, h2, h3, h4 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #10b981, #047857);
+    background: #10b981;
     color: #ffffff !important;
-    border: 1px solid #34d399;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
-    font-weight: 700;
+    border: none;
+    box-shadow: none !important;
+    font-weight: 600;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #34d399, #10b981);
-    border-color: #6ee7b7;
-    box-shadow: 0 6px 20px rgba(52, 211, 153, 0.5);
-    transform: translateY(-2px);
+    background: #059669;
+    box-shadow: none !important;
+    transform: translateY(-1px);
     color: #ffffff !important;
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #cc181e, #990f14);
+    background: #dc2626;
     color: #ffffff !important;
-    border: 1px solid #ff333a;
-    box-shadow: 0 4px 15px rgba(204, 24, 30, 0.35);
-    font-weight: 700;
+    border: none;
+    box-shadow: none !important;
+    font-weight: 600;
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #ff1f25, #cc181e);
-    border-color: #ff666b;
-    box-shadow: 0 6px 20px rgba(255, 31, 37, 0.5);
-    transform: translateY(-2px);
+    background: #b91c1c;
+    box-shadow: none !important;
+    transform: translateY(-1px);
     color: #ffffff !important;
 }
 
 /* 詳細ボタン (ブルーカラー) */
 .btn-primary[data-ja*="詳細"],
 .btn-info-detail {
-    background: linear-gradient(135deg, #0070f3, #0051ba);
+    background: #2563eb;
     color: #ffffff !important;
-    border: 1px solid #38bdf8;
-    box-shadow: 0 4px 15px rgba(0, 112, 243, 0.4);
-    font-weight: 700;
+    border: none;
+    box-shadow: none !important;
+    font-weight: 600;
 }
 
 .btn-primary[data-ja*="詳細"]:hover,
 .btn-info-detail:hover {
-    background: linear-gradient(135deg, #38bdf8, #0070f3);
-    border-color: #7dd3fc;
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
-    transform: translateY(-2px);
+    background: #1d4ed8;
+    box-shadow: none !important;
+    transform: translateY(-1px);
     color: #ffffff !important;
 }
 
