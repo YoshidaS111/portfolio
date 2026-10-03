@@ -218,6 +218,21 @@ h1, h2, h3, h4 {
     font-size: 0.85rem;
 }
 
+/* X (Twitter) 用ボタン */
+.btn-x {
+    background: #0f1419 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: none !important;
+    font-weight: 600;
+}
+
+.btn-x:hover {
+    background: #272c30 !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transform: translateY(-1px);
+}
+
 .hero-buttons {
     display: flex;
     gap: 15px;
