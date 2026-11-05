@@ -332,6 +332,55 @@ h1, h2, h3, h4 {
 }
 
 /* Works Section */
+.works-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.works-sort-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    padding: 3px 5px;
+    border-radius: 8px;
+}
+
+.sort-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    padding: 0 6px;
+    font-weight: 500;
+}
+
+.sort-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.sort-btn:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.sort-btn.active {
+    background: var(--text-main);
+    color: var(--bg-main) !important;
+}
+
 .works-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

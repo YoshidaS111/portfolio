@@ -149,4 +149,62 @@ document.addEventListener('DOMContentLoaded', () => {
             closeSteamModal();
         }
     });
+
+    // 5. 作品一覧のソート機能（おすすめ順 / 新しい順 / 古い順）
+    const worksGrid = document.querySelector('.works-grid');
+    const sortButtons = document.querySelectorAll('.sort-btn');
+
+    if (worksGrid && sortButtons.length > 0) {
+        // 初期状態のカード順を保持（おすすめ順）
+        const initialCards = Array.from(worksGrid.querySelectorAll('.work-card'));
+
+        sortButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const sortType = btn.dataset.sort;
+
+                // アクティブボタンスタイルの切り替え
+                sortButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                let sortedCards = [];
+
+                if (sortType === 'default') {
+                    // おすすめ順（ユーザー設定のデフォルト順）
+                    sortedCards = [...initialCards];
+                } else if (sortType === 'newest') {
+                    // 新しい順（終了日・最新順）
+                    sortedCards = [...initialCards].sort((a, b) => {
+                        const aComing = a.dataset.isComingSoon === 'true';
+                        const bComing = b.dataset.isComingSoon === 'true';
+                        if (aComing) return 1;
+                        if (bComing) return -1;
+
+                        const aEnd = a.dataset.dateEnd || '0000-00-00';
+                        const bEnd = b.dataset.dateEnd || '0000-00-00';
+                        return bEnd.localeCompare(aEnd);
+                    });
+                } else if (sortType === 'oldest') {
+                    // 古い順（制作開始日順）
+                    sortedCards = [...initialCards].sort((a, b) => {
+                        const aComing = a.dataset.isComingSoon === 'true';
+                        const bComing = b.dataset.isComingSoon === 'true';
+                        if (aComing) return 1;
+                        if (bComing) return -1;
+
+                        const aStart = a.dataset.dateStart || '9999-99-99';
+                        const bStart = b.dataset.dateStart || '9999-99-99';
+                        return aStart.localeCompare(bStart);
+                    });
+                }
+
+                // 滑らかなフェード切り替え
+                worksGrid.style.opacity = '0.3';
+                worksGrid.style.transition = 'opacity 0.15s ease';
+                setTimeout(() => {
+                    sortedCards.forEach(card => worksGrid.appendChild(card));
+                    worksGrid.style.opacity = '1';
+                }, 150);
+            });
+        });
+    }
 });

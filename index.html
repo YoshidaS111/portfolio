@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=20261004_12">
+    <link rel="stylesheet" href="css/style.css?v=20261106_03">
     <style>
         /* ── Language Toggle Button ── */
         .lang-toggle {
@@ -152,13 +152,21 @@
 
         <!-- Works Section ("Library") -->
         <section id="works" class="section">
-            <h2 class="section-title"
+            <div class="works-header">
+                <h2 class="section-title" style="margin-bottom: 0;"
                 data-ja="作品一覧"
                 data-en="Works">作品一覧</h2>
+                <div class="works-sort-control">
+                    <span class="sort-label" data-ja="並び替え:" data-en="Sort:">並び替え:</span>
+                    <button class="sort-btn active" data-sort="default" data-ja="おすすめ順" data-en="Featured">おすすめ順</button>
+                    <button class="sort-btn" data-sort="newest" data-ja="新しい順" data-en="Newest">新しい順</button>
+                    <button class="sort-btn" data-sort="oldest" data-ja="古い順" data-en="Oldest">古い順</button>
+                </div>
+            </div>
             
             <div class="works-grid">
                 <!-- Slot 1: Born Bone Boom! -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2026-06-11" data-date-end="2026-08-27">
                     <div class="work-img-container">
                         <img src="https://img.youtube.com/vi/pI6e8p7UPJw/maxresdefault.jpg" alt="Born Bone Boom!" class="work-img" style="object-fit: cover; object-position: center; transform: scale(1.05);">
                         <div class="work-badge">チーム制作</div>
@@ -181,7 +189,7 @@
                 </div>
 
                 <!-- Slot 2: E:den -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2026-09-11" data-date-end="9999-12-31">
                     <div class="work-img-container">
                         <img src="assets/eden_thumbnail.jpg" alt="E:den" class="work-img" style="object-fit: cover; object-position: center;">
                         <div class="work-badge" data-ja="チーム制作" data-en="Team">チーム制作</div>
@@ -204,7 +212,7 @@
                 </div>
 
                 <!-- Slot 3: よふかしあそび -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2026-02-14" data-date-end="2026-05-21">
                     <div class="work-img-container">
                         <div class="award-badge" style="font-size: 0.75rem; padding: 4px 10px;"
                             data-ja="🏆 協賛企業賞 & 審査員賞"
@@ -233,7 +241,7 @@
                 </div>
 
                 <!-- Slot 4: セーチング！ -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2025-10-17" data-date-end="2026-01-08">
                     <div class="work-img-container">
                         <div class="award-badge"
                             data-ja="🏆 優秀賞受賞"
@@ -262,7 +270,7 @@
                 </div>
 
                 <!-- Slot 5: らーめん裏飯家 -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2026-03-15" data-date-end="2026-03-22">
                     <div class="work-img-container">
                         <img src="assets/urameshiya_thumbnail.png" alt="らーめん裏飯家" class="work-img" style="object-position: top;">
                         <div class="work-badge">unity1week</div>
@@ -285,7 +293,7 @@
                 </div>
 
                 <!-- Slot 6: DEMON DASH-DAWN -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2026-07-04" data-date-end="2026-07-28">
                     <div class="work-img-container">
                         <img src="assets/demondash_thumbnail.png" alt="DEMON DASH-DAWN" class="work-img" style="object-fit: cover; object-position: center;">
                         <div class="work-badge" data-ja="個人制作" data-en="Solo">個人制作</div>
@@ -308,7 +316,7 @@
                 </div>
 
                 <!-- Slot 7: キャンバスぬりつぶしろ！ -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2026-07-26" data-date-end="2026-08-02">
                     <div class="work-img-container">
                         <img src="assets/canvas_thumbnail_static.png" data-static="assets/canvas_thumbnail_static.png" data-gif="assets/canvas_thumbnail.gif" alt="キャンバスぬりつぶしろ！" class="work-img" style="object-fit: cover; object-position: center;">
                         <div class="work-badge">unity1week</div>
@@ -331,7 +339,7 @@
                 </div>
 
                 <!-- Slot 8: MOWひとつ -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2025-12-21" data-date-end="2025-12-28">
                     <div class="work-img-container">
                         <img src="assets/mow_thumbnail.png" alt="MOWひとつ" class="work-img" style="object-position: top; transform: scale(1.1) translate(-5%, 0%);">
                         <div class="work-badge">unity1week</div>
@@ -354,7 +362,7 @@
                 </div>
 
                 <!-- Slot 9: Bang!Bang!Ball! -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2026-05-30" data-date-end="2026-06-01">
                     <div class="work-img-container">
                         <img src="assets/bangbangball.png" alt="Bang!Bang!Ball!" class="work-img" style="object-fit: cover; object-position: center;">
                         <div class="work-badge">合同Jam</div>
@@ -377,7 +385,7 @@
                 </div>
 
                 <!-- Slot 10: 討ち取れ！暗殺忍者！ -->
-                <div class="work-card">
+                <div class="work-card" data-date-start="2026-08-31" data-date-end="2026-09-02">
                     <div class="work-img-container">
                         <img src="assets/ninja_thumbnail.png" alt="討ち取れ！暗殺忍者！" class="work-img" style="object-fit: cover; object-position: center;">
                         <div class="work-badge" data-ja="チーム制作" data-en="Team">チーム制作</div>
@@ -400,7 +408,7 @@
                 </div>
 
                 <!-- Slot 11: Coming Soon (Bottom) -->
-                <div class="work-card">
+                <div class="work-card" data-is-coming-soon="true">
                     <div class="work-img-container" style="background-color: rgba(255, 255, 255, 0.04); display: flex; align-items: center; justify-content: center;">
                         <span style="color: var(--text-muted); font-size: 1.4rem; font-weight: 600; letter-spacing: 2px;"
                             data-ja="準備中..."
@@ -488,7 +496,7 @@
         <p>© 2026 Shoma Yoshida. All Rights Reserved.</p>
     </footer>
 
-    <script src="js/script.js?v=20261106_02"></script>
+    <script src="js/script.js?v=20261106_03"></script>
     <script>
         // ── Language Switch ──────────────────────────────────────────
         function setLang(lang) {
