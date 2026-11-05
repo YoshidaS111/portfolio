@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const bannerSrc = img ? (img.getAttribute('data-gif') || img.src) : '';
         const badge = card.querySelector('.work-badge')?.innerHTML || '';
         const awardText = card.querySelector('.award-badge')?.innerText.trim() || '';
+        const dateHtml = card.querySelector('.work-date')?.innerHTML || '';
         
         // Find action buttons container securely
         let actionsContainer = card.querySelector('.work-info div[style*="flex"]');
@@ -69,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const titleEl = document.getElementById('steam-title');
         const bannerEl = document.getElementById('steam-banner');
         const descEl = document.getElementById('steam-desc');
+        const dateEl = document.getElementById('steam-date');
         const roleEl = document.getElementById('steam-role');
         const badgeEl = document.getElementById('steam-badge');
         const actionsEl = document.getElementById('steam-actions');
@@ -76,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (titleEl) titleEl.innerHTML = title;
         if (bannerEl) bannerEl.src = bannerSrc;
         if (descEl) descEl.innerHTML = desc;
+        if (dateEl) dateEl.innerHTML = dateHtml || '—';
         if (roleEl) roleEl.innerHTML = role;
         if (badgeEl) badgeEl.innerHTML = badge;
         if (actionsEl) actionsEl.innerHTML = actionsHtml;
