@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const badge = card.querySelector('.work-badge')?.innerHTML || '';
         const awardText = card.querySelector('.award-badge')?.innerText.trim() || '';
         const dateHtml = card.querySelector('.work-date')?.innerHTML || '';
+        const teamSizeHtml = card.querySelector('.work-team-size')?.innerHTML || '';
         
         // Find action buttons container securely
         let actionsContainer = card.querySelector('.work-info div[style*="flex"]');
@@ -73,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dateEl = document.getElementById('steam-date');
         const roleEl = document.getElementById('steam-role');
         const badgeEl = document.getElementById('steam-badge');
+        const teamSizeEl = document.getElementById('steam-team-size');
         const actionsEl = document.getElementById('steam-actions');
 
         if (titleEl) titleEl.innerHTML = title;
@@ -81,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dateEl) dateEl.innerHTML = dateHtml || '—';
         if (roleEl) roleEl.innerHTML = role;
         if (badgeEl) badgeEl.innerHTML = badge;
+        if (teamSizeEl) teamSizeEl.innerHTML = teamSizeHtml || '—';
         if (actionsEl) actionsEl.innerHTML = actionsHtml;
 
         const awardBox = document.getElementById('steam-award-box');
